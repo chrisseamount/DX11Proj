@@ -30,5 +30,8 @@ const std::string& Exceptions::GetFile() const noexcept
 
 std::string Exceptions::GetOriginString() const noexcept
 {
-	return std::string();
+	std::ostringstream oss;
+	oss << "[File] " << _file << std::endl
+		<< "[Line] " << _line;
+	return oss.str();
 }
