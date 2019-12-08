@@ -11,7 +11,7 @@ int Mouse::GetPosX() const noexcept
 	return _x;
 }
 
-int Mouse::GetPostY() const noexcept
+int Mouse::GetPosY() const noexcept
 {
 	return _y;
 }

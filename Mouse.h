@@ -66,7 +66,7 @@ public:
 			return __x;
 		}
 
-		int GetPostY() const noexcept
+		int GetPosY() const noexcept
 		{
 			return __y;
 		}
@@ -93,7 +93,7 @@ public:
 
 	std::pair<int, int> GetPos() const noexcept;
 	int GetPosX() const noexcept;
-	int GetPostY() const noexcept;
+	int GetPosY() const noexcept;
 	bool IsInWindow() const noexcept;
 	bool LeftIsPressed() const noexcept;
 	bool RightIsPressed() const noexcept;
