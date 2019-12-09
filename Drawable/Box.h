@@ -10,9 +10,10 @@ public:
 		std::uniform_real_distribution<float>& adist,
 		std::uniform_real_distribution<float>& ddist, 
 		std::uniform_real_distribution<float>& odist, 
-		std::uniform_real_distribution<float>& rdist);
+		std::uniform_real_distribution<float>& rdist,
+		std::uniform_real_distribution<float>& bdist);
 
-	Box(const Box& other) = delete;
+	Box(const Box& other) = default;
 	Box(Box&& other) = default;
 	Box& operator=(const Box& other) = default;
 	Box& operator=(Box&& other) = default;
@@ -38,6 +39,7 @@ private:
 	float dphi;
 	float dchi;
 
+	DirectX::XMFLOAT3X3 mt;
 
 };
 
