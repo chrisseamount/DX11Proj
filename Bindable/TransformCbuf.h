@@ -7,8 +7,15 @@
 
 class TransformCbuf : public Bindable
 {
+private:
+	struct Transforms
+	{
+		DirectX::XMMATRIX modelView;
+		DirectX::XMMATRIX model;
+	};
+
 public:
-	TransformCbuf(Graphics& gfx, const Drawable& parent);
+	TransformCbuf(Graphics& gfx, const Drawable& parent, UINT slot = 0u);
 	~TransformCbuf() = default;
 
 	TransformCbuf(const TransformCbuf& other) = default;
@@ -20,7 +27,7 @@ public:
 	void Bind(Graphics& gfx) noexcept override;
 
 private:
-	static std::unique_ptr<VertexConstantBuffer<DirectX::XMMATRIX>> pVcbuf;
+	static std::unique_ptr<VertexConstantBuffer<Transforms>> pVcbuf;
 	const Drawable& parent;
 
 
