@@ -8,7 +8,7 @@ class App
 {
 public:
 	App();
-	~App() = default;
+	~App();
 
 	App(const App & other) = default;
 	App(App && other) = default;
@@ -23,6 +23,7 @@ private:
 private:
 	Window wnd;
 	Timer timer;
+	std::vector<std::unique_ptr<class Box>> boxes;
 };
 
 

@@ -3,8 +3,8 @@
 #include <sstream>
 #include <d3dcompiler.h>
 #include <cmath>
-#include <DirectXMath.h>
-#include "GraphicsThrowMacros.h"
+
+#include "Macros/GraphicsThrowMacros.h"
 
 namespace wrl = Microsoft::WRL;
 namespace dx = DirectX;
@@ -108,6 +108,16 @@ Graphics::Graphics(HWND hWnd)
 	// bind render targets
 	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), pDSV.Get());
 
+	// configure viewport
+	D3D11_VIEWPORT vp;
+	vp.Width = 800;
+	vp.Height = 600;
+	vp.MinDepth = 0;
+	vp.MaxDepth = 1;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	pContext->RSSetViewports(1u, &vp);
+
 }
 
 void Graphics::EndFrame()
@@ -136,6 +146,21 @@ void Graphics::ClearBuffer(float red, float green, float blue) noexcept
 	const float color[] = { red, green, blue, 1.0f };
 	pContext->ClearRenderTargetView(pTarget.Get(), color);
 	pContext->ClearDepthStencilView(pDSV.Get(), D3D11_CLEAR_DEPTH,1.0f,0u);
+}
+
+void Graphics::DrawIndexed(UINT count) noexcept
+{
+	GFX_THROW_INFO_ONLY(pContext->DrawIndexed(count, 0u, 0u));
+}
+
+void Graphics::SetProjection(DirectX::FXMMATRIX proj) noexcept
+{
+	projection = proj;
+}
+
+DirectX::XMMATRIX Graphics::GetProjection() const noexcept
+{
+	return projection;
 }
 
 void Graphics::DrawTestTriangle(float angle, float x, float z)

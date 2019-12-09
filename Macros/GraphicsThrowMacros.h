@@ -16,4 +16,10 @@
 #define GFX_THROW_INFO_ONLY(call) (call)
 #endif // !NDEBUG
 
+#ifdef NDEBUG
+#define INFOMAN(gfx) HRESULT hr
+#else
+#define INFOMAN(gfx) HRESULT hr; DxgiInfoManager& infoManager = GetInfoManager((gfx))
+#endif
+
 #endif // !GRAPHICS_THROW_MACROS_H_INCLUDED
